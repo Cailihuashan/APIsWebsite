@@ -208,6 +208,10 @@ def currency_rate():
 def about():
     return render_template('about.html')
 
+# Vercel serverless handler
+def handler(event, context):
+    return app(event, context)
+
 if __name__ == "__main__":
     # Change port to avoid conflicts
     app.run(debug=True, port=5001)  # Use port 5001 instead of the default 5000
