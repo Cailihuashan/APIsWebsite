@@ -1,0 +1,92 @@
+/* General Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    text-align: center;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header Styling */
+header {
+    margin-bottom: 20px;
+}
+
+header img {
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Styling */
+h1 {
+    font-size: 2.5em;
+    color: #222;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Styling */
+form {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+select, button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+select {
+    background: #f1f1f1;
+}
+
+button {
+    background: #ff6f61;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e63946;
+}
+
+/* Joke Styling */
+h2 {
+    font-size: 2em;
+    color: #444;
+}
+
+p {
+    font-size: 1.3em;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Back Link Styling */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #444;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #ff6f61;
+}

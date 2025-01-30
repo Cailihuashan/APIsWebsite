@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Cat Facts 🐱</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #ffe6f2;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ff4d88;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            animation: bounce 1s infinite alternate;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ff6699, #ff3366);
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.5);
+        }
+
+        #fact {
+            font-size: 22px;
+            color: #333;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        /* Floating Cat Emoji Animation */
+        .cat {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.5;
+            animation: float 5s infinite linear;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🐱 Random Cat Facts 🐱</h1>
+    <button onclick="getCatFact()">Get a Cat Fact</button>
+    <p id="fact">Click the button to learn something about cats!</p>
+
+    <script>
+        async function getCatFact() {
+            try {
+                let response = await fetch('https://catfact.ninja/fact');
+                let data = await response.json();
+                let factElement = document.getElementById('fact');
+
+                factElement.style.opacity = "0"; // Hide fact for smooth fade-in
+                setTimeout(() => {
+                    factElement.textContent = data.fact;
+                    factElement.style.opacity = "1"; // Fade in effect
+                }, 300);
+
+                addFloatingCats();
+            } catch (error) {
+                console.error('Error fetching cat fact:', error);
+                document.getElementById('fact').textContent = "Oops! Couldn't fetch a cat fact.";
+            }
+        }
+
+        function addFloatingCats() {
+            for (let i = 0; i < 5; i++) {
+                let cat = document.createElement("div");
+                cat.textContent = "🐱";
+                cat.classList.add("cat");
+                cat.style.left = Math.random() * window.innerWidth + "px";
+                cat.style.animationDuration = (3 + Math.random() * 3) + "s";
+                document.body.appendChild(cat);
+
+                setTimeout(() => {
+                    cat.remove();
+                }, 5000);
+            }
+        }
+    </script>
+    <a href="/">Back to Home</a>
+</body>
+</html>

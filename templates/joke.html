@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Joke Generator</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='joke.css') }}">
+</head>
+<header style="text-align: center; margin-bottom: 20px;">
+    <a href="/" style="text-decoration: none;">
+        <img src="{{ url_for('static', filename='favicon.ico') }}" alt="Website Logo" style="height: 150px;">
+    </a>
+</header>
+<body>
+    <h1>Random Joke Generator</h1>
+
+    <form method="POST">
+        <label for="category">Choose a category:</label>
+        <select id="category" name="category">
+            <option value="Any">Any</option>
+            <option value="Programming">Programming</option>
+            <option value="Miscellaneous">Miscellaneous</option>
+            <option value="Pun">Pun</option>
+            <option value="Dark">Dark</option>
+            <option value="Spooky">Spooky</option>
+        </select>
+        <button type="submit">Get a Joke</button>
+    </form>
+
+    <hr>
+
+    {% if joke_data %}
+        <h2>Here's a Joke for You!</h2>
+        <p>{{ joke_data.joke }}</p>
+        <!-- For two-part jokes, extend to handle the setup and delivery -->
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <a href="/">Back to Home</a>
+</body>
+</html>

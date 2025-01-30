@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Viewer</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header style="text-align: center; margin-bottom: 20px;">
+    <a href="/" style="text-decoration: none;">
+        <img src="{{ url_for('static', filename='favicon.ico') }}" alt="Website Logo" style="height: 150px;">
+    </a>
+</header>
+<body>
+    <h1>GitHub Profile Viewer</h1>
+    <form action="/github" method="post">
+        <label for="username">Enter GitHub Username:</label>
+        <input type="text" id="username" name="username" placeholder="e.g., octocat" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Display error if exists -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display repositories -->
+    {% if user_data %}
+        <h2>Public Repositories:</h2>
+        <ul>
+            {% for repo in user_data %}
+                <li>
+                    <strong>{{ repo.name }}</strong>: {{ repo.description or 'No description available' }}<br>
+                    ⭐ Stars: {{ repo.stargazers_count }} | Forks: {{ repo.forks_count }}<br>
+                    <a href="{{ repo.html_url }}" target="_blank">View Repository</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+    <a href="/">Back to Home</a>
+</body>
+</html>
